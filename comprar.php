@@ -1,95 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recibo de Compra</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        h2 {
-            color: #333;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-        th, td {
-            padding: 12px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .total {
-            font-weight: bold;
-        }
-    </style>
+    <title>Cotización de Chocolates</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
 
-<h2>Recibo de Compra</h2>
+<body style="background-image: url('https://images.template.net/218220/chocolate-brown-background-edit-online.jpg');background-size: cover;  ">
 
-<?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $products = $_POST['products']; // Recibe los productos del formulario
-    $nombre = htmlspecialchars($_POST['nombre']);
-    $telefono = htmlspecialchars($_POST['telefono']);
-    $email = htmlspecialchars($_POST['email']);
-    $direccion = htmlspecialchars($_POST['direccion']);
-    $total_price = 0;
+<div class="banner-content"><div class="container mt-5">
+        <h1 class="text-center" style="font-size: 3em;  font-weight: 1000; ">Cotización de Productos</h1>
+</div></div>
+    <div class="container mt-5">
+        
+        <?php
+        $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
+        $email = isset($_POST['email']) ? $_POST['email'] : '';
+        $telefono = isset($_POST['telefono']) ? $_POST['telefono'] : '';
+        $direccion = isset($_POST['direccion']) ? $_POST['direccion'] : '';
+        $tipo_venta = isset($_POST['tipo_venta']) ? $_POST['tipo_venta'] : 'unidad';
 
-    echo "<p><strong>Nombre:</strong> $nombre</p>";
-    echo "<p><strong>Teléfono:</strong> $telefono</p>";
-    echo "<p><strong>Correo Electrónico:</strong> $email</p>";
-    echo "<p><strong>Dirección:</strong> $direccion</p>";
-    echo "<hr>";
+        
+        $precio_chocolate_negro = 25;
+        
 
-    echo "<table>";
-    echo "<tr><th>Producto</th><th>Cantidad</th><th>Precio Unitario (Bs)</th><th>Subtotal (Bs)</th></tr>";
+        
+        $cantidad_chocolate_negro = intval(isset($_POST['chocolate_amargo']) ? $_POST['chocolate_amargo'] : 0);
+       
+        
+        $total_chocolate_negro = $cantidad_chocolate_negro * $precio_chocolate_negro;
 
-    foreach ($products as $product_key => $product) {
-        $quantity = intval($product['quantity']);
-        if ($quantity > 0) {
-            $name = htmlspecialchars($product['name']);
-            $price_per_unit = floatval($product['price']);
-            $subtotal = $quantity * $price_per_unit;
+        ?>
+  <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                
+                <div class="card-body">
+                <h2>Datos del Cliente</h2>
+                    <p><strong>Nombre:</strong> <?php echo htmlspecialchars($nombre); ?></p>
+                    <p><strong>Email:</strong> <?php echo htmlspecialchars($email); ?></p>
+                    <p><strong>Teléfono:</strong> <?php echo htmlspecialchars($telefono); ?></p>
 
-            // Aplica descuento si la cantidad es mayor a 5
-            if ($quantity > 5) {
-                $subtotal *= 0.9; // Descuento del 10%
-            }
+                    <?php if ($tipo_venta == 'mayor'): ?>
+                        <p><strong>Sucursal:</strong> <?php echo htmlspecialchars($sucursal); ?></p>
+                    <?php else: ?>
+                        <p><strong>Dirección:</strong> <?php echo htmlspecialchars($direccion); ?></p>
+                    <?php endif; ?>
 
-            $total_price += $subtotal;
+                    <h2>Resumen de Compra:</h2>
+                    <ul style="margin-left: 1rem;">
+                        <?php if ($cantidad_chocolate_negro > 0): ?>
+                            <li>Chocolate Negro: <?php echo $cantidad_chocolate_negro . ' ' . ($tipo_venta == 'mayor' ? 'cajas' : 'unidades') . ' - Bs. ' . number_format($total_chocolate_negro, 2); ?></li>
+                        <?php endif; ?>
+                       
+                    </ul>
 
-            echo "<tr>";
-            echo "<td>$name</td>";
-            echo "<td>$quantity</td>";
-            echo "<td>" . number_format($price_per_unit, 2) . "</td>";
-            echo "<td>" . number_format($subtotal, 2) . "</td>";
-            echo "</tr>";
-        }
-    }
+                    <p style="float:right;font-size: 1.3em;"><strong>Total General:</strong> <?= number_format($total_general, 2) ?> Bs</p>
+                    <br><br>
+                    <a href="index.html" class="btn btn-dark" style="float:right">Volver a la tienda</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    echo "<tr>";
-    echo "<td colspan='3' class='total'>Total a Pagar:</td>";
-    echo "<td class='total'>" . number_format($total_price, 2) . " Bs</td>";
-    echo "</tr>";
-    echo "</table>";
+                </div>
+            </div>
+        </div>
+    </div>
 
-    echo "<p>Gracias por tu compra!</p>";
-} else {
-    echo "<p>No se recibieron datos del formulario.</p>";
-}
-?>
+    <footer class="text-center mt-4">
+        <p>&copy; 2024 Tienda de Chocolates UCB</p>
+    </footer>
 
 </body>
 </html>
