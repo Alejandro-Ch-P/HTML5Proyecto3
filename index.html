@@ -35,116 +35,35 @@
                   <h5 class="card-title">Chocolate amargo</h5>
                   <p class="card-text">15 Bs por unidad</p>
                   <p class="card-text"><small class="text-body-secondary">Compra más de 5 y recibe un descuento del 10%</small></p>
-                  <label for="quantity-chocolate-amargo">Cantidad:</label>
-                  <input type="number" id="quantity-chocolate-amargo" name="quantity-chocolate-amargo" min="1" max="99" value="1">
+                  <input type="number" placeholder="Cantidad" id="quantity-chocolate-amargo" name="products[chocolate_amargo][quantity]" min="0">
+                  <input type="hidden" name="products[chocolate_amargo][name]" value="Chocolate amargo">
+                  <input type="hidden" name="products[chocolate_amargo][price]" value="15">
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="card mb-3">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="..." class="img-fluid rounded-start" alt="...">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-3">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="..." class="img-fluid rounded-start" alt="...">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-3">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="..." class="img-fluid rounded-start" alt="...">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-3">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="..." class="img-fluid rounded-start" alt="...">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card mb-3">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="..." class="img-fluid rounded-start" alt="...">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    
     </div>
-    <div class="container mt-5">
-      <h2>Formulario de Contacto</h2>
-      <form action="procesar_formulario.php" method="POST">
+    <div class="container mt-5" style="margin-bottom: 60px;">
+      <h2 style="color: azure ; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);">Formulario de Contacto</h2>
         <div class="mb-3">
-          <label for="nombre" class="form-label">Nombre Completo</label>
-          <input type="text" class="form-control" id="nombre" name="nombre" required>
+          <label style="color: aliceblue;" for="nombre" class="form-label">Nombre:</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre completo" required>
         </div>
         <div class="mb-3">
-          <label for="telefono" class="form-label">Teléfono</label>
-          <input type="tel" class="form-control" id="telefono" name="telefono" required>
+          <label style="color: aliceblue;" for="telefono" class="form-label">Teléfono</label>
+          <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Ingrese su Teléfono" required>
         </div>
         <div class="mb-3">
-          <label for="email" class="form-label">Correo Electrónico</label>
-          <input type="email" class="form-control" id="email" name="email" required>
+          <label style="color: aliceblue;" for="email" class="form-label">Correo Electrónico</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Ingrese su correo" required>
         </div>
         <div class="mb-3">
-          <label for="direccion" class="form-label">Dirección</label>
-          <textarea class="form-control" id="direccion" name="direccion" rows="3" required></textarea>
+          <label style="color: aliceblue;" for="direccion" class="form-label">Dirección</label>
+          <textarea class="form-control" id="direccion" name="direccion" rows="3" placeholder="Ingrese su Dirección" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Enviar</button>
-      </form>
+        <button type="submit" class="btn btn-dark">Enviar</button>
     </div>
 </form>
 
